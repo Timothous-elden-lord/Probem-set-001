@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Base class Weapon
+class Weapon {
+protected:
+    string name;
+    int damage;
+
+public:
+    // Constructor for Weapon class
+    Weapon(const string& n, int d) : name(n), damage(d) {}
+
+    // Display function for Weapon class
+    virtual void display() const {
+        cout << "Weapon Name: " << name << endl;
+        cout << "Damage: " << damage << endl;
+    }
+};
+
+// Subclass Sword that inherits from Weapon
+class Sword : public Weapon {
+private:
+    int sharpness;
+    double bladeLength;
+
+public:
+    // Constructor for Sword class
+    Sword(const string& n, int d, int s, double b) 
+        : Weapon(n, d), sharpness(s), bladeLength(b) {}
+
+    // Override display function for Sword class
+    void display() const override {
+        // Call base class display function
+        Weapon::display();
+        // Display Sword-specific properties
+        cout << "Sharpness: " << sharpness << endl;
+        cout << "Blade Length: " << bladeLength << " cm" << endl;
+    }
+};
+
+// Main function
+int main() {
+    // Create an instance of Sword
+    Sword mySword("Excalibur", 50, 90, 120.5);
+
+    // Call display function to print properties of both base and subclass
+    mySword.display();
+
+    return 0;
+}
